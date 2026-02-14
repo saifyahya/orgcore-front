@@ -1,0 +1,81 @@
+<div class="dashboard">
+  <div class="page-header">
+    <h1>{{ 'DASHBOARD.TITLE' | translate }}</h1>
+    <p class="page-subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
+  </div>
+
+  <div class="stats-grid" *ngIf="!loading; else spinner">
+    <mat-card class="stat-card" *ngFor="let stat of stats" [routerLink]="stat.route" style="cursor:pointer">
+      <mat-card-content>
+        <div class="stat-icon-wrap" [style.background]="stat.color + '20'">
+          <mat-icon [style.color]="stat.color">{{ stat.icon }}</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ stat.value }}</div>
+          <div class="stat-title">{{ stat.titleKey | translate }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="section-header">
+    <h2>{{ 'DASHBOARD.QUICK_ACTIONS' | translate }}</h2>
+  </div>
+  <div class="quick-actions">
+    <button mat-flat-button color="primary" routerLink="/sales/new">
+      <mat-icon>add</mat-icon> {{ 'DASHBOARD.NEW_SALE' | translate }}
+    </button>
+    <button mat-stroked-button routerLink="/products">
+      <mat-icon>inventory</mat-icon> {{ 'DASHBOARD.MANAGE_PRODUCTS' | translate }}
+    </button>
+    <button mat-stroked-button routerLink="/inventory">
+      <mat-icon>warehouse</mat-icon> {{ 'DASHBOARD.VIEW_INVENTORY' | translate }}
+    </button>
+    <button mat-stroked-button routerLink="/stock-movements">
+      <mat-icon>swap_vert</mat-icon> {{ 'DASHBOARD.STOCK_MOVEMENTS' | translate }}
+    </button>
+  </div>
+
+  <div class="section-header">
+    <h2>{{ 'DASHBOARD.RECENT_SALES' | translate }}</h2>
+    <a mat-button routerLink="/sales">{{ 'DASHBOARD.VIEW_ALL' | translate }}</a>
+  </div>
+  <mat-card class="table-card">
+    <mat-card-content>
+      <div class="empty-state" *ngIf="recentSales.length === 0">
+        <mat-icon>receipt_long</mat-icon>
+        <p>{{ 'DASHBOARD.NO_RECENT_SALES' | translate }}
+          <a routerLink="/sales/new">{{ 'DASHBOARD.CREATE_FIRST_SALE' | translate }}</a>
+        </p>
+      </div>
+      <table class="data-table" *ngIf="recentSales.length > 0">
+        <thead>
+          <tr>
+            <th>{{ 'DASHBOARD.TABLE.SALE_NO' | translate }}</th>
+            <th>{{ 'DASHBOARD.TABLE.BRANCH' | translate }}</th>
+            <th>{{ 'DASHBOARD.TABLE.TOTAL' | translate }}</th>
+            <th>{{ 'DASHBOARD.TABLE.PAYMENT' | translate }}</th>
+            <th>{{ 'DASHBOARD.TABLE.CHANNEL' | translate }}</th>
+            <th>{{ 'DASHBOARD.TABLE.DATE' | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let sale of recentSales" [routerLink]="['/sales', sale.id]" style="cursor:pointer">
+            <td>#{{ sale.id }}</td>
+            <td>{{ sale.branch?.branchName || ('COMMON.NA' | translate) }}</td>
+            <td class="amount">{{ sale.totalAmount | currency }}</td>
+            <td><span class="badge">{{ sale.paymentMethod || ('COMMON.NA' | translate) }}</span></td>
+            <td><span class="badge channel">{{ sale.channel || ('COMMON.NA' | translate) }}</span></td>
+            <td>{{ sale.createdAt | date:'short' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #spinner>
+  <div class="spinner-wrap">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+</ng-template>
