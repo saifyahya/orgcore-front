@@ -5,7 +5,7 @@ import { Inventory, InventoryRequest, Page, StockMovement, StockMovementRequest 
 
 @Injectable({ providedIn: 'root' })
 export class InventoryService {
-  private path = '/inventory';
+  private path = '/inventories';
 
   constructor(private api: ApiService) { }
 

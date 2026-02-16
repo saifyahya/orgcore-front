@@ -9,8 +9,11 @@ export class BranchService {
 
   constructor(private api: ApiService) { }
 
-  getAll(page: number = 0, size: number = 20): Observable<Page<Branch>> {
-    return this.api.get<Page<Branch>>(this.path, { page, size });
+  getAll(page: number = 0, size: number = 10, search?: string, isActive?: number): Observable<Page<Branch>> {
+    const params: any = { page, size };
+    if (search) params.search = search;
+    if (isActive !== undefined && isActive !== null) params.isActive = isActive;
+    return this.api.get<Page<Branch>>(this.path, params);
   }
 
   getById(id: number): Observable<Branch> {

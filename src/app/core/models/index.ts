@@ -41,7 +41,9 @@ export enum ReferenceType {
 // ---- Base ----
 export interface BaseEntity {
   createdAt?: string;
+  createdBy?: string;
   updatedAt?: string;
+  updatedBy?: string;
 }
 
 // ---- Category ----
@@ -77,7 +79,7 @@ export interface Product extends BaseEntity {
   id?: number;
   name: string;
   description?: string;
-  category?: Category;
+  categoryDto?: Category;
   categoryId?: number;
   image?: string;
   price?: number;

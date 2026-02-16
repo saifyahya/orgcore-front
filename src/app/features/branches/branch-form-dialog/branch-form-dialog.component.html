@@ -4,11 +4,13 @@
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>{{ 'BRANCHES.FORM.NAME_LABEL' | translate }} *</mat-label>
       <input matInput formControlName="branchName" [placeholder]="'BRANCHES.FORM.NAME_PLACEHOLDER' | translate">
-      <mat-error *ngIf="form.get('branchName')?.hasError('required')">{{ 'BRANCHES.FORM.NAME_REQUIRED' | translate }}</mat-error>
+      <mat-error *ngIf="form.get('branchName')?.hasError('required')">{{ 'BRANCHES.FORM.NAME_REQUIRED' | translate
+        }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>{{ 'BRANCHES.FORM.ADDRESS_LABEL' | translate }}</mat-label>
-      <textarea matInput formControlName="address" [placeholder]="'BRANCHES.FORM.ADDRESS_PLACEHOLDER' | translate" rows="2"></textarea>
+      <textarea matInput formControlName="address" [placeholder]="'BRANCHES.FORM.ADDRESS_PLACEHOLDER' | translate"
+        rows="2"></textarea>
     </mat-form-field>
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>{{ 'BRANCHES.FORM.STATUS_LABEL' | translate }}</mat-label>

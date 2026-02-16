@@ -347,7 +347,11 @@
     "BACK": "Back",
     "ACTIONS": "Actions",
     "STATUS": "Status",
-    "CREATED_AT": "Created"
+    "CREATED_AT": "Created",
+    "CREATED_BY": "Created By",
+    "UPDATED_BY": "Updated By",
+    "UPDATED_AT": "Updated At",
+    "ALL_STATUS": "All Statuses"
   },
   "CONFIRM": {
     "DEFAULT_TITLE": "Confirm Action",

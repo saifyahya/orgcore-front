@@ -9,8 +9,11 @@ export class CategoryService {
 
   constructor(private api: ApiService) { }
 
-  getAll(): Observable<Page<Category>> {
-    return this.api.get<Page<Category>>(this.path);
+  getAll(page: number = 0, size: number = 10, search?: string, isActive?: number): Observable<Page<Category>> {
+    const params: any = { page, size };
+    if (search) params.search = search;
+    if (isActive !== undefined && isActive !== null) params.isActive = isActive;
+    return this.api.get<Page<Category>>(this.path, params);
   }
 
   getById(id: number): Observable<Category> {

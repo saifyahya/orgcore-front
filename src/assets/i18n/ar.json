@@ -347,7 +347,11 @@
     "BACK": "رجوع",
     "ACTIONS": "الإجراءات",
     "STATUS": "الحالة",
-    "CREATED_AT": "تاريخ الإنشاء"
+    "CREATED_AT": "تاريخ الإنشاء",
+    "CREATED_BY": "أنشأ بواسطة",
+    "UPDATED_BY": "حدث بواسطة",
+    "UPDATED_AT": "تاريخ التحديث",
+    "ALL_STATUS": "جميع الحالات"
   },
   "CONFIRM": {
     "DEFAULT_TITLE": "تأكيد الإجراء",

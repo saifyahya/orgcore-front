@@ -9,8 +9,12 @@ export class ProductService {
 
   constructor(private api: ApiService) { }
 
-  getAll(): Observable<Page<Product>> {
-    return this.api.get<Page<Product>>(this.path);
+  getAll(page: number = 0, size: number = 10, search?: string, isActive?: number, categoryId?: number): Observable<Page<Product>> {
+    const params: any = { page, size };
+    if (search) params.search = search;
+    if (isActive !== undefined && isActive !== null) params.isActive = isActive;
+    if (categoryId !== undefined && categoryId !== null) params.categoryId = categoryId;
+    return this.api.get<Page<Product>>(this.path, params);
   }
 
   getByCategory(categoryId: number): Observable<Product[]> {
